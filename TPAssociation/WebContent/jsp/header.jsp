@@ -4,11 +4,11 @@
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>HEAAAAAAAAAAAAADER</title>	
+	<title>Accueil</title>	
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 	</head>
 	<body>
-		<table border=2>
+		<table border=2 id="header">
 		<tr>
 			<td id="accueil"><a href="#">Accueil</a></td>
 			<td id="article"><a href="#">Articles</a></td>
@@ -17,5 +17,3 @@
 			<td id="adherent">Adherent : <b>o ${prenom}</b></td>
 		</tr>
 		</table>
-	</body>
-</html>
