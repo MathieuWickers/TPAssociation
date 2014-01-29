@@ -1,0 +1,6 @@
+@CHARSET "ISO-8859-1";
+label{
+	display:inblock;
+	float:left;
+	width:150px;
+}
