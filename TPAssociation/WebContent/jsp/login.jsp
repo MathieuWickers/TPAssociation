@@ -8,13 +8,17 @@
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 	</head>
 	<body>
-		<h2>Login</h2>
-		<form method="POST" action="">
-		<label>Identifiant </label><input type="text"/><br/>
-		<label>Mot De Passe </label><input type="password"/><br/>
-		<input type="submit" value="OK"/><br/>
-		</form>
-		
-		<p>Pas encore enregistré? <a href="#">Creez votre compte...</a><p>
+	<div id="body">
+		<div id="login" >
+			<h2>Login</h2>
+			<form method="POST" action="">
+				<label>Identifiant </label><input type="text"/><br/>
+				<label>Mot De Passe </label><input type="password"/><br/>
+				<input type="submit" value="OK"/><br/>
+			</form>
+			
+			<p>Pas encore enregistré? <a href="#">Creez votre compte...</a></p>
+		</div>
+	</div>
 	</body>
 </html>

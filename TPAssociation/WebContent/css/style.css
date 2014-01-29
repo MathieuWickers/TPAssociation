@@ -1,6 +1,31 @@
 @CHARSET "ISO-8859-1";
-label{
+body{
+	
+	width:600px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#body{
+	border :5px solid rgba(0, 0, 255, 0.5);
+}
+#login form{
+	width:100%;
+}
+#login label{
 	display:inblock;
 	float:left;
 	width:150px;
+	margin-bottom:5px;
+}
+#login input{
+	margin-bottom:5px;
+}
+#login{
+	
+	margin-left:10px;
+	
+}
+#login h2{
+	margin-right:10px;
+	border-bottom:1px solid black;
 }
