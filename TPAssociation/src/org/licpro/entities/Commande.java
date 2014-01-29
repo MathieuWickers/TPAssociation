@@ -2,6 +2,8 @@ package org.licpro.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,14 +12,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "COMMANDE", schema = "association")
+@Table(name = "COMMANDE", schema = "ROOT")
 public class Commande {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private int Id;
 
-	@OneToMany
+	@OneToMany(mappedBy="commande")
 	private List<Article> articles;
 
 	/**
