@@ -35,6 +35,7 @@ public class template extends HttpServlet {
 		if(page.compareToIgnoreCase("login")==0){
 			rd = getServletContext().getRequestDispatcher("/jsp/login.jsp");
 		}else if(page.compareToIgnoreCase("accueil")==0){
+					
 			rd = getServletContext().getRequestDispatcher("/jsp/accueil.jsp");
 		}else{
 			rd = getServletContext().getRequestDispatcher("/jsp/404.jsp");

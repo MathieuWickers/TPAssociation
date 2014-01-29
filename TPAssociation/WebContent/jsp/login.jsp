@@ -17,7 +17,7 @@
 				<input type="submit" value="OK"/><br/>
 			</form>
 			
-			<p>Pas encore enregistré? <a href="#">Creez votre compte...</a></p>
+			<p>Pas encore enregistré? <a href="creationCompte">Creez votre compte...</a></p>
 		</div>
 	</div>
 	</body>
