@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ADHERENT", schema = "association")
+@Table(name = "ADHERENT", schema = "ROOT")
 public class Adherent {
 
 	@Id

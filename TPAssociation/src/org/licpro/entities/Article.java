@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ARTICLE", schema = "association")
+@Table(name = "ARTICLE", schema = "ROOT")
 public class Article {
 
 	@Id
@@ -24,6 +26,10 @@ public class Article {
 
 	@Column(name = "PRICE")
 	private double prix;
+	
+	@ManyToOne
+	@JoinColumn(name="ID")
+	private Commande commande;
 
 	/**
 	 * @return the id
