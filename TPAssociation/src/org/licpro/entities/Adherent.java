@@ -1,10 +1,13 @@
 package org.licpro.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +16,7 @@ public class Adherent {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "ADHERENT_ID")
 	private int id;
 
 	@Column(name = "LOGIN")
@@ -39,6 +42,9 @@ public class Adherent {
 
 	@Column(name = "COUNTRY")
 	private String pays;
+	
+	@OneToMany(mappedBy="adherent")
+	private List<Commande> commandes;
 
 	/**
 	 * @return the id
@@ -173,6 +179,14 @@ public class Adherent {
 	 */
 	public void setPays(String pays) {
 		this.pays = pays;
+	}
+
+	public List<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(List<Commande> commandes) {
+		this.commandes = commandes;
 	}
 
 }
