@@ -17,7 +17,7 @@ public class Commande {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "COMMANDE_ID")
 	private int Id;
 
 	@OneToMany(mappedBy="commande")

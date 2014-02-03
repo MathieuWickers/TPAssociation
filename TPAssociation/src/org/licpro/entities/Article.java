@@ -15,7 +15,7 @@ public class Article {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "ARTICLE_ID")
 	private int Id;
 
 	@Column(name = "CODE")
@@ -28,7 +28,7 @@ public class Article {
 	private double prix;
 	
 	@ManyToOne
-	@JoinColumn(name="ID")
+	@JoinColumn(name="COMMANDE_ID")
 	private Commande commande;
 
 	/**
