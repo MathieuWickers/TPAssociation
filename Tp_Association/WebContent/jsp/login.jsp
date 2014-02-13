@@ -11,9 +11,9 @@
 	<div id="body">
 		<div id="login" >
 			<h2>Login</h2>
-			<form method="POST" action="">
-				<label>Identifiant </label><input type="text"/><br/>
-				<label>Mot De Passe </label><input type="password"/><br/>
+			<form method="POST" action="<%=request.getContextPath() %>/frontController">
+				<label>Identifiant </label><input type="text" name="id"/><br/>
+				<label>Mot De Passe </label><input type="password" name="pwd"/><br/>
 				<input type="submit" value="OK"/><br/>
 			</form>
 			
