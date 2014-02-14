@@ -48,7 +48,6 @@ public class template extends HttpServlet {
 		}
 
 		rd.forward(request, response);
-
 	}
 
 	/**

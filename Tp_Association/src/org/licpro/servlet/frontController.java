@@ -22,7 +22,6 @@ public class frontController extends HttpServlet {
 	 */
 	public frontController() {
 		super();
-
 	}
 
 	/**
@@ -31,7 +30,6 @@ public class frontController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// request.getSession().invalidate();
 		PrintWriter out = response.getWriter();
 		String nextPage = request.getPathInfo();
 		if (nextPage != null && !nextPage.contentEquals("/")) {
@@ -41,11 +39,9 @@ public class frontController extends HttpServlet {
 				nextPage = "/";
 			}
 		}
-
 		request.setAttribute("page", nextPage);
 		getServletContext().getRequestDispatcher("/template").forward(request,
 				response);
-
 	}
 
 	/**
@@ -54,11 +50,8 @@ public class frontController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("hjsdfophsopfie");
 		String id = request.getParameter("id");
-		System.out.println(id);
 		String pwd = request.getParameter("pwd");
-		System.out.println(pwd);
 		String nextPage = null;
 
 		// On garde cette partie pour tester mais à terme, il faut remplacer par
@@ -72,7 +65,6 @@ public class frontController extends HttpServlet {
 		request.setAttribute("page", nextPage);
 		getServletContext().getRequestDispatcher("/template").forward(request,
 				response);
-
 	}
 
 	protected void process(HttpServletRequest request,
