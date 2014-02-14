@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.iut.tp.services.AuthentificationService;
+
 /**
  * Servlet implementation class frontController
  */
@@ -53,6 +55,7 @@ public class frontController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		String nextPage = request.getPathInfo();
 		if (nextPage != null) {
 			if (nextPage.substring(1).contentEquals("connexion")) {
@@ -66,9 +69,6 @@ public class frontController extends HttpServlet {
 				response);
 	}
 
-	protected void process(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
-	}
 
 	public void connexion(HttpServletRequest request) {
 		AuthentificationService as = new AuthentificationService();
