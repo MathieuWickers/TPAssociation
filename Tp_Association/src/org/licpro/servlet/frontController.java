@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.iut.tp.services.AuthentificationService;
+
 /**
  * Servlet implementation class frontController
  */
@@ -54,28 +56,27 @@ public class frontController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("hjsdfophsopfie");
+		AuthentificationService as = new AuthentificationService();
 		String id = request.getParameter("id");
-		System.out.println(id);
 		String pwd = request.getParameter("pwd");
-		System.out.println(pwd);
-		String nextPage = null;
-
 		// On garde cette partie pour tester mais à terme, il faut remplacer par
 		// une vérification dans la BD
-		if ("ok".contentEquals(pwd)) {
-			request.getSession().setAttribute("identifiant", id);
-			nextPage = "accueil";
-		}
+		 if (as.authAdh(id,pwd)) {
+			 request.getSession().setAttribute("identifiant", id);
+			 getServletContext().getRequestDispatcher("/").forward(request,
+						response);
+		 }else{
+			 getServletContext().getRequestDispatcher("/login").forward(request,
+						response);
+		 }
 
 		// On affiche la page web
-		request.setAttribute("page", nextPage);
 		getServletContext().getRequestDispatcher("/template").forward(request,
 				response);
-
 	}
 
 	protected void process(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {}
-	
+			HttpServletResponse response) throws IOException {
+	}
+
 }
