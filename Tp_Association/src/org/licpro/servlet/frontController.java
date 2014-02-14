@@ -3,6 +3,9 @@ package org.licpro.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import fr.iut.tp.entities.Adherent;
+import fr.iut.tp.services.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,24 +53,102 @@ public class frontController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
-		String nextPage = null;
-
-		// On garde cette partie pour tester mais à terme, il faut remplacer par
-		// une vérification dans la BD
-		if ("ok".contentEquals(pwd)) {
-			request.getSession().setAttribute("identifiant", id);
-			nextPage = "accueil";
+		String nextPage = request.getPathInfo();
+		if (nextPage != null) {
+			if (nextPage.substring(1).contentEquals("connexion")) {
+				connexion(request);
+			} else if (nextPage.substring(1).contentEquals("inscription")) {
+				inscription(request);
+			}
 		}
 
-		// On affiche la page web
-		request.setAttribute("page", nextPage);
 		getServletContext().getRequestDispatcher("/template").forward(request,
 				response);
 	}
 
 	protected void process(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {}
-	
+			HttpServletResponse response) throws IOException {
+	}
+
+	public void connexion(HttpServletRequest request) {
+		AuthentificationService as = new AuthentificationService();
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		if (as.authAdh(id, pwd)) {
+			request.getSession().setAttribute("identifiant", id);
+		}
+	}
+
+	private void inscription(HttpServletRequest request) {
+		if (verifChampObligatoire(request)) {
+			if (verifLoginUnique(request)) {
+				if (verifMdpIdentique(request)) {
+					Adherent adh = creationAdherent(request);
+					InscriptionService is = new InscriptionService();
+					adh.setAdherent_id(is.getNumberAdherent());
+					is.inscriptionAdherent(adh);
+				}
+			}
+		}
+	}
+
+	private boolean verifChampObligatoire(HttpServletRequest request) {
+		if (request.getParameter("id").contentEquals("")
+				|| request.getParameter("pwd").contentEquals("")
+				|| request.getParameter("pwdC").contentEquals("")
+				|| request.getParameter("ndf").contentEquals("")
+				|| request.getParameter("prenom").contentEquals("")) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean verifLoginUnique(HttpServletRequest request) {
+		InscriptionService is = new InscriptionService();
+		String login = (String) request.getAttribute("id");
+		if (is.findUserByLogin(login) != null) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean verifMdpIdentique(HttpServletRequest request) {
+		if (request.getParameter("pwd").contentEquals(
+				request.getParameter("pwdC"))) {
+			return true;
+		}
+		return false;
+	}
+
+	private Adherent creationAdherent(HttpServletRequest request) {
+		Adherent adh = new Adherent();
+		String id = request.getParameter("id");
+		adh.setLogin(id);
+		String pwd = request.getParameter("pwd");
+		adh.setPwd(pwd);
+		String ndf = request.getParameter("ndf");
+		adh.setNom(ndf);
+		String prenom = request.getParameter("prenom");
+		adh.setPrenom(prenom);
+
+		String adresse = request.getParameter("adresse");
+		if (!adresse.contentEquals("")) {
+			adh.setAddress(adresse);
+		}
+		String codePostal = request.getParameter("codepostal");
+		if (!codePostal.contentEquals("")) {
+			adh.setZip(Integer.valueOf(codePostal));
+		}
+		String ville = request.getParameter("ville");
+		if (!ville.contentEquals("")) {
+			adh.setCity(ville);
+		}
+		String pays = request.getParameter("pays");
+		if (!pays.contentEquals("")) {
+			adh.setCountry(pays);
+		}
+
+		return adh;
+	}
+
 }

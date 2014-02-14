@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +20,7 @@ public class template extends HttpServlet {
 
 	// Constante qui contient l'ensemble des pages existantes
 	private static final List<String> existingPage = Arrays.asList("accueil",
-			"info", "login");
+			"info", "login", "inscription");
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -40,7 +39,7 @@ public class template extends HttpServlet {
 		RequestDispatcher rd = null;
 		String identifiant = (String) request.getSession().getAttribute(
 				"identifiant");
-		
+
 		if (identifiant != null) {
 			rd = userIsLogin(request);
 		} else {
@@ -56,6 +55,7 @@ public class template extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		//A CHANGER
 		doGet(request, response);
 	}
 
@@ -81,6 +81,9 @@ public class template extends HttpServlet {
 		String page = (String) request.getAttribute("page");
 		if (page == null || page.contentEquals("/")) {
 			rd = getServletContext().getRequestDispatcher("/jsp/login.jsp");
+		} else if (page.contentEquals("inscription")) {
+			rd = getServletContext().getRequestDispatcher(
+					"/jsp/inscription.jsp");
 		} else {
 			// Sinon on vérifie que le paramètre renvoie sur une page existante
 			if (existingPage.contains(page)) {
@@ -91,5 +94,4 @@ public class template extends HttpServlet {
 		}
 		return rd;
 	}
-
 }

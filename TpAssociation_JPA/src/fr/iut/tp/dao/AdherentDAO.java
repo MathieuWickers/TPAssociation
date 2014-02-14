@@ -36,6 +36,12 @@ public class AdherentDAO {
         em.getTransaction().commit();
 	}
 	
+	public void create(Adherent adh){
+		em.getTransaction().begin();
+        em.persist(adh);
+        em.getTransaction().commit();
+	}
+	
 	public void delete(int ID){
 		Adherent adh = find(ID);
 		em.getTransaction().begin();

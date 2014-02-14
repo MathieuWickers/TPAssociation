@@ -14,11 +14,11 @@ public class AdherentTests {
 		AdherentDAO adhDAO = new AdherentDAO();
 
 		// create new user
-		adhDAO.create(1, "log", "pwd", "prenom", "nom", "adress", 44830,
+		adhDAO.create(2, "log", "pwd", "prenom", "nom", "adress", 44830,
 				"nantes", "France");
 
 		// find a user
-		Adherent adh = adhDAO.find(1);
+		Adherent adh = adhDAO.find(2);
 		System.out.println(adh.getLogin());
 
 		// find all users
@@ -32,7 +32,7 @@ public class AdherentTests {
 		}
 
 		// delete user
-		adhDAO.delete(1);
+		adhDAO.delete(2);
 
 		// verif delete
 		Adherent adhDelete = new Adherent();

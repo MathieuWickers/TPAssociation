@@ -35,3 +35,18 @@ body{
 #blank {
 	width:50%;
 }
+
+#inscription {
+ 	margin-left: 10px;
+ }
+
+#inscription label {
+    display: block;
+    width: 175px;
+    float: left;
+}
+
+#inscription h2{
+	margin-right:10px;
+	border-bottom:1px solid black;
+}

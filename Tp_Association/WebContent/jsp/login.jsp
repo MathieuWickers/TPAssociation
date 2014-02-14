@@ -11,13 +11,13 @@
 	<div id="body">
 		<div id="login" >
 			<h2>Login</h2>
-			<form method="POST" action="<%=request.getContextPath() %>/frontController">
+			<form method="POST" action="<%=request.getContextPath() %>/frontController/connexion">
 				<label>Identifiant </label><input type="text" name="id"/><br/>
 				<label>Mot De Passe </label><input type="password" name="pwd"/><br/>
 				<input type="submit" value="OK"/><br/>
 			</form>
 			
-			<p>Pas encore enregistré? <a href="creationCompte">Creez votre compte...</a></p>
+			<p>Pas encore enregistré? <a href="<%= request.getContextPath() %>/frontController/inscription">Creez votre compte...</a></p>
 		</div>
 	</div>
 	</body>
