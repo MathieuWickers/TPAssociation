@@ -13,7 +13,9 @@ TP Programmation 3 avec Laurent Guérin
     * database : association  
     * user name : root  
     * password : admin
-5. Essayer de lancer les tests du projet JPA et de run le projet Web voir si tout fonctionne
-6. Terminer le projet
-7. Terminer le PowerPoint
-8. 20/20 ggwp guyz
+5. Ajouter les .jar dans le buildpath
+6. Mettre le .jar du projet JPA ainsi que tout les .jar qui se trouve dans le dossier lib du projet JPA dans le dossier WEB-INF/lib du projet web (avec un copier coller)
+7. Essayer de lancer les tests du projet JPA et de run le projet Web voir si tout fonctionne
+8. Terminer le projet
+9. Terminer le PowerPoint
+10. 20/20 ggwp guyz
