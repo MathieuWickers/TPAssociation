@@ -22,24 +22,35 @@ public class BDDtest {
 		Article leArt2 = artDAO.create("T_146","Tshirt bleu",999.99,20);
 		Article leArt3 = artDAO.create("T_147","Tshirt rouge",999.99,20);
 		List<Article> laListArt = new ArrayList<Article>();
+		List<Article> laListArt1 = new ArrayList<Article>();
 		laListArt.add(leArt);
 		laListArt.add(leArt2);
 		Commande laCom = comDAO.create(0,laListArt, leAdh);
+		laListArt1.add(leArt);
+		laListArt1.add(leArt2);
+		laListArt1.add(leArt3);
+		Commande laCom1 = comDAO.create(1,laListArt1, leAdh);
 		
-		/*List<Commande> listCom = comDAO.listAll();
-		for (Commande uneCom : listCom) {
-			System.out.println(uneCom.getArticles()+" "+uneCom.getCommande_Id()+" "+uneCom.getAdherent().getAdherent_id());
-		}*/
+		List<Commande> listCom = comDAO.listAll();
+		for (Commande uneCom : listCom){
+			if(uneCom.getAdherent().getAdherent_id()==0){
+				System.out.println("Commande n°"+uneCom.getCommande_Id()+" venant de "+uneCom.getAdherent().getNom()+" "+uneCom.getAdherent().getPrenom());
+				List<Article> artCommande = uneCom.getArticles();
+				for(Article art : artCommande){
+					System.out.println(art.getCode()+" "+art.getNom()+" "+art.getPrix());
+				}
+			}
+		}
 		
-		Commande uneCom = comDAO.find(0); 
+		/*Commande uneCom = comDAO.find(0); 
 		System.out.println("Commande n°"+uneCom.getCommande_Id()+" venant de "+uneCom.getAdherent().getNom()+" "+uneCom.getAdherent().getPrenom());
 		List<Article> artCommande = uneCom.getArticles();
 		for(Article art : artCommande){
 			System.out.println(art.getCode()+" "+art.getNom()+" "+art.getPrix());
-		}
-
+		}*/
 		
 		comDAO.delete(0);
+		comDAO.delete(1);
 		artDAO.delete("T_145");
 		artDAO.delete("T_146");
 		artDAO.delete("T_147");
