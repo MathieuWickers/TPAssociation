@@ -20,7 +20,7 @@ public class template extends HttpServlet {
 
 	// Constante qui contient l'ensemble des pages existantes
 	private static final List<String> existingPage = Arrays.asList("accueil",
-			"info", "login", "inscription","panier", "catalogue");
+			"info", "login", "inscription","panier", "catalogue","historique");
 
 	/**
 	 * @see HttpServlet#HttpServlet()
