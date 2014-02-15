@@ -2,6 +2,8 @@ package org.licpro.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.iut.tp.entities.Adherent;
 import fr.iut.tp.services.*;
@@ -55,7 +57,6 @@ public class frontController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
 		String nextPage = request.getPathInfo();
 		if (nextPage != null) {
 			if (nextPage.substring(1).contentEquals("connexion")) {
