@@ -7,7 +7,8 @@
 		<h1>Bienvenue  sur le site des adherents de l'association des paunays roses du chaos</h1>
 		<ul>
 			<li><a href="<%=request.getContextPath() %>/frontController/catalogue">Consulter les articles disponibles</a></li>
-			<li><a href="#">Consulter votre commande</a></li>
-		</ul>		
+			<li><a href="<%=request.getContextPath()%>/frontController/panier">Consulter votre commande</a></li>
+		</ul>
+
 	</body>
 </html>

@@ -3,6 +3,7 @@ package org.licpro.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.iut.tp.entities.Adherent;
 import fr.iut.tp.entities.Article;
