@@ -30,8 +30,8 @@ public class Article {
 	
 	@ManyToMany 
 	@JoinTable( name="ART_COM", 
-	joinColumns=@JoinColumn(name="ARTICLE_CODE"), 
-	inverseJoinColumns=@JoinColumn(name="COMMANDE_ID") ) 
+			 joinColumns={@JoinColumn(name="ARTICLE_CODE", referencedColumnName="ARTICLE_CODE")},
+		      inverseJoinColumns={@JoinColumn(name="COMMANDE_ID", referencedColumnName="COMMANDE_ID")})
 	private List<Commande> commandes;
 	
 	public Article(String code, String nom, double prix,int stock) {
