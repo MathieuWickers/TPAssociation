@@ -26,24 +26,25 @@ public class BDDtest {
 		laListArt.add(leArt2);
 		Commande laCom = comDAO.create(0,laListArt, leAdh);
 		
-		/*List<Commande> listCom = comDAO.listAll();
+		List<Commande> listCom = comDAO.listAll();
 		for (Commande uneCom : listCom) {
 			System.out.println(uneCom.getArticles()+" "+uneCom.getCommande_Id()+" "+uneCom.getAdherent().getAdherent_id());
-		}*/
+		}
 		
 		Commande uneCom = comDAO.find(0); 
 		System.out.println("Commande n°"+uneCom.getCommande_Id()+" venant de "+uneCom.getAdherent().getNom()+" "+uneCom.getAdherent().getPrenom());
 		List<Article> artCommande = uneCom.getArticles();
+		System.out.println("Nombre d'articles : "+artCommande.size());
 		for(Article art : artCommande){
 			System.out.println(art.getCode()+" "+art.getNom()+" "+art.getPrix());
 		}
 
 		
-		comDAO.delete(0);
+		/*comDAO.delete(4);
 		artDAO.delete("T_145");
 		artDAO.delete("T_146");
 		artDAO.delete("T_147");
-		adhDAO.delete(0);
+		adhDAO.delete(0);*/
 		
 	}
 

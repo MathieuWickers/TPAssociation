@@ -3,19 +3,18 @@ package org.licpro.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
-
 import fr.iut.tp.entities.Adherent;
 import fr.iut.tp.entities.Article;
 import fr.iut.tp.services.*;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import fr.iut.tp.services.AuthentificationService;
+import fr.iut.tp.services.CommandeService;
 
 /**
  * Servlet implementation class frontController
@@ -70,6 +69,8 @@ public class frontController extends HttpServlet {
 				connexion(request);
 			} else if (nextPage.substring(1).contentEquals("inscription")) {
 				inscription(request);
+			} else if (nextPage.substring(1).contentEquals("commande")) {
+				commande(request);
 			}
 		}
 
@@ -179,6 +180,14 @@ public class frontController extends HttpServlet {
 		}
 
 		return adh;
+	}
+	
+	public void commande(HttpServletRequest request) {
+		ArrayList<Article> articles = (ArrayList<Article>) request.getSession().getAttribute("panier");
+		String id = (String) request.getSession().getAttribute("identifiant");
+		CommandeService commServ = new CommandeService();
+		Adherent adh = commServ.findUserByLogin(id);
+		commServ.creerCommande(commServ.getNumberCommande(), articles, adh);
 	}
 
 }
