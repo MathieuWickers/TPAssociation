@@ -10,8 +10,8 @@
 	<body>
 		<table border=2 id="header">
 		<tr>
-			<td id="accueil"><a href="#">Accueil</a></td>
-			<td id="article"><a href="#">Articles</a></td>
+			<td id="accueil"><a href="<%= request.getContextPath() %>/frontController/">Accueil</a></td>
+			<td id="articles"><a href="<%= request.getContextPath() %>/frontController/catalogue">Articles</a></td>
 			<td id="commande"><a href="#">Commande</a></td>
 			<td id="deconnexion"><a href="<%=request.getContextPath()%>/logout">D&eacute;connexion</a></td>
 			<td id="blank"></td>
