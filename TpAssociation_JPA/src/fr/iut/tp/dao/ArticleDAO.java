@@ -8,7 +8,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import fr.iut.tp.entities.Article;
-import fr.iut.tp.entities.Commande;
 
 public class ArticleDAO {
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa");

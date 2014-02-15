@@ -30,9 +30,9 @@ public class CommandeDAO {
 		return commandes;
 	}
 	
-	public Commande create(int commande_id, Adherent adherent, List<Article> articles){
+	public Commande create(int commande_id, List<Article> articles, Adherent adherent){
 		em.getTransaction().begin();
-		Commande newCom = new Commande(commande_id,adherent,articles);
+		Commande newCom = new Commande(commande_id,articles,adherent);
         em.persist(newCom);
         em.getTransaction().commit();
         return newCom;
@@ -44,5 +44,4 @@ public class CommandeDAO {
 		em.remove(com);
 		em.getTransaction().commit();
 	}
-	
 }

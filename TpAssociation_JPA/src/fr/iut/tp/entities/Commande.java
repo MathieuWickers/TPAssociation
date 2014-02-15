@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,11 +26,11 @@ public class Commande {
 	@JoinColumn(name="ADHERENT_ID")
 	private Adherent adherent;
 	
-	public Commande(int commande_Id, Adherent adherent, List<Article> articles) {
+	public Commande(int commande_Id, List<Article> articles, Adherent adherent) {
 		super();
 		this.commande_Id = commande_Id;
-		this.adherent = adherent;
 		this.articles = articles;
+		this.adherent = adherent;
 	}
 	
 	public Commande(){

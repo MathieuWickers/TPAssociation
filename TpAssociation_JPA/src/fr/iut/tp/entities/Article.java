@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -39,7 +38,6 @@ public class Article {
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
-		this.stock = stock;
 	}
 	
 	public Article(){
@@ -103,9 +101,9 @@ public class Article {
 		return commandes;
 	}
 
-	public void setCommande(List<Commande> commandes) {
+	public void setCommandes(List<Commande> commandes) {
 		this.commandes = commandes;
 	}
-
+	
 }
 
