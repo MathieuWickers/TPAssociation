@@ -2,8 +2,11 @@ package org.licpro.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.iut.tp.entities.Adherent;
+import fr.iut.tp.entities.Article;
 import fr.iut.tp.services.*;
 
 import javax.servlet.ServletException;
@@ -38,7 +41,12 @@ public class frontController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String nextPage = request.getPathInfo();
 		if (nextPage != null && !nextPage.contentEquals("/")) {
-			if (!nextPage.contentEquals("/login")) {
+			if (nextPage.contentEquals("/article")) {
+				ajoutArticleEnSession(request);
+				((HttpServletResponse) response).sendRedirect(request
+						.getContextPath() + "/frontController/catalogue");
+				return;
+			} else if (!nextPage.contentEquals("/login")) {
 				nextPage = nextPage.substring(1);
 			} else {
 				nextPage = "/";
@@ -69,6 +77,26 @@ public class frontController extends HttpServlet {
 				response);
 	}
 
+	@SuppressWarnings("unchecked")
+	private void ajoutArticleEnSession(HttpServletRequest request) {
+		String nom = (String) request.getParameter("nom");
+		String prx = (String) request.getParameter("prix");
+		Double prix = Double.parseDouble(prx);
+		String code = (String) request.getParameter("code");
+		Article art = new Article();
+		art.setCode(code);
+		art.setNom(nom);
+		art.setPrix(prix);
+		ArrayList<Article> articles;
+		if (request.getSession().getAttribute("panier") == null) {
+			articles = new ArrayList<Article>();
+			request.getSession().setAttribute("panier", articles);
+		}
+		articles = (ArrayList<Article>) request.getSession().getAttribute(
+				"panier");
+		articles.add(art);
+		request.getSession().setAttribute("panier", articles);
+	}
 
 	public void connexion(HttpServletRequest request) {
 		AuthentificationService as = new AuthentificationService();
@@ -85,8 +113,10 @@ public class frontController extends HttpServlet {
 				if (verifMdpIdentique(request)) {
 					Adherent adh = creationAdherent(request);
 					InscriptionService is = new InscriptionService();
-					adh.setAdherent_id(is.getNumberAdherent());
+					adh.setAdherent_id(is.getNumberAdherent() + 1);
 					is.inscriptionAdherent(adh);
+					String id = request.getParameter("id");
+					request.getSession().setAttribute("identifiant", id);
 				}
 			}
 		}

@@ -2,7 +2,7 @@
     <wb-module deploy-name="Tp_Association">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/Tp_Association/build/classes"/>
         <property name="context-root" value="Tp_Association"/>
+        <property name="java-output-path" value="/Tp_Association/build/classes"/>
     </wb-module>
 </project-modules>
