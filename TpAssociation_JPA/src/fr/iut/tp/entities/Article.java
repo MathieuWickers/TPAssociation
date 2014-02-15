@@ -1,9 +1,13 @@
 package fr.iut.tp.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -12,11 +16,7 @@ import javax.persistence.Table;
 public class Article {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ARTICLE_ID")
-	private int article_Id;
-
-	@Column(name = "CODE")
+	@Column(name = "ARTICLE_CODE")
 	private String code;
 
 	@Column(name = "NAME")
@@ -25,37 +25,25 @@ public class Article {
 	@Column(name = "PRICE")
 	private double prix;
 	
-	@ManyToOne
-	@JoinColumn(name="COMMANDE_ID")
-	private Commande commande;
-
-	public Article(int article_Id, String code, String nom, double prix,
-			Commande commande) {
+	@Column(name = "STOCK")
+	private int stock;
+	
+	@ManyToMany 
+	@JoinTable( name="ART_COM", 
+	joinColumns=@JoinColumn(name="ARTICLE_CODE"), 
+	inverseJoinColumns=@JoinColumn(name="COMMANDE_ID") ) 
+	private List<Commande> commandes;
+	
+	public Article(String code, String nom, double prix,int stock) {
 		super();
-		this.article_Id = article_Id;
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
-		this.commande = commande;
+		this.stock = stock;
 	}
 	
 	public Article(){
 		super();
-	}
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return article_Id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(int article_Id) {
-		this.article_Id = article_Id;
 	}
 
 	/**
@@ -101,6 +89,22 @@ public class Article {
 	 */
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public List<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommande(List<Commande> commandes) {
+		this.commandes = commandes;
 	}
 
 }

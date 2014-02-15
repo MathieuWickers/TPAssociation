@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,18 +20,18 @@ public class Commande {
 	@Column(name = "COMMANDE_ID")
 	private int commande_Id;
 
-	@OneToMany(mappedBy="commande")
+	@ManyToMany(mappedBy="commandes")
 	private List<Article> articles;
 	
 	@ManyToOne
 	@JoinColumn(name="ADHERENT_ID")
 	private Adherent adherent;
 	
-	public Commande(int commande_Id, List<Article> articles, Adherent adherent) {
+	public Commande(int commande_Id, Adherent adherent, List<Article> articles) {
 		super();
 		this.commande_Id = commande_Id;
-		this.articles = articles;
 		this.adherent = adherent;
+		this.articles = articles;
 	}
 	
 	public Commande(){
@@ -65,6 +66,14 @@ public class Commande {
 	 */
 	public void setArticles(List<Article> articles) {
 		this.articles = articles;
+	}
+
+	public Adherent getAdherent() {
+		return adherent;
+	}
+
+	public void setAdherent(Adherent adherent) {
+		this.adherent = adherent;
 	}
 
 }

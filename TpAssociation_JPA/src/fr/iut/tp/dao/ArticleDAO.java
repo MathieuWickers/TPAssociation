@@ -14,8 +14,8 @@ public class ArticleDAO {
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa");
 	EntityManager em = factory.createEntityManager();
 	
-	public Article find(int id){
-		Article art = em.find(Article.class, id);
+	public Article find(String code){
+		Article art = em.find(Article.class, code);
 		if (art !=null){
 			return art;
 		}
@@ -29,16 +29,16 @@ public class ArticleDAO {
 		return articles;
 	}
 	
-	public void create(int article_Id, String code, String nom, double prix,
-			Commande commande){
+	public Article create(String code, String nom, double prix,int stock){
 		em.getTransaction().begin();
-		Article newArt= new Article(article_Id,code,nom,prix,commande);
+		Article newArt= new Article(code,nom,prix,stock);
         em.persist(newArt);
         em.getTransaction().commit();
+        return newArt;
 	}
 	
-	public void delete(int ID){
-		Article art = find(ID);
+	public void delete(String code){
+		Article art = find(code);
 		em.getTransaction().begin();
 		em.remove(art);
 		em.getTransaction().commit();

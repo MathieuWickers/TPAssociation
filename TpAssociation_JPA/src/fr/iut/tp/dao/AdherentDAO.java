@@ -28,12 +28,13 @@ public class AdherentDAO {
 		return users;
 	}
 	
-	public void create(int adherent_id, String login, String pwd, String prenom,
+	public Adherent create(int adherent_id, String login, String pwd, String prenom,
 			String nom, String adress, int zip, String city, String country){
 		em.getTransaction().begin();
 		Adherent newAdh = new Adherent(adherent_id,login,pwd,prenom,nom,adress,zip,city,country);
         em.persist(newAdh);
         em.getTransaction().commit();
+        return newAdh;
 	}
 	
 	public void create(Adherent adh){
