@@ -20,7 +20,7 @@ public class CommandeService {
 	public Adherent findUserByLogin(String login) {
 		List<Adherent> adherents = adhDao.listAll();
 		for (Adherent adh : adherents) {
-			if (adh.getLogin().equals(login)) {
+			if (adh.getLogin().contentEquals(login)) {
 				return adh;
 			}
 		}

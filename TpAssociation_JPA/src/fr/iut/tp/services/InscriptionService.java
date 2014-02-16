@@ -1,5 +1,6 @@
 package fr.iut.tp.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.iut.tp.dao.AdherentDAO;
@@ -13,9 +14,10 @@ public class InscriptionService {
 	}
 
 	public Adherent findUserByLogin(String login) {
-		List<Adherent> adherents = adhDAO.listAll();
+		List<Adherent> adherents = new ArrayList<Adherent>();
+		adherents = adhDAO.listAll();
 		for (Adherent adh : adherents) {
-			if (adh.getLogin().equals(login)) {
+			if (adh.getLogin().contentEquals(login)) {
 				return adh;
 			}
 		}

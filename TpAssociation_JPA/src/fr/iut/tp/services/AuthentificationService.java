@@ -16,7 +16,7 @@ public class AuthentificationService {
 	public Adherent findUserByLogin(String login){
 		List<Adherent> adherents = adhDAO.listAll();
 		for(Adherent adh : adherents){
-			if (adh.getLogin().equals(login)){
+			if (adh.getLogin().contentEquals(login)){
 				return adh;
 			}
 		}

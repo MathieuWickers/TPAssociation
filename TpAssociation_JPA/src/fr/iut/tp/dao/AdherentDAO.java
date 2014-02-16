@@ -11,7 +11,7 @@ import fr.iut.tp.entities.Adherent;
 
 public class AdherentDAO {
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa");
-	EntityManager em = factory.createEntityManager();
+	public EntityManager em = factory.createEntityManager();
 	
 	public Adherent find(int id){
 		Adherent adh = em.find(Adherent.class, id);
