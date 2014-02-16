@@ -53,25 +53,25 @@
 						</div>					
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4">Adresse (rue) <span style="color:#FF0000;">*</span> :</label>
+						<label class="col-sm-4">Adresse (rue) :</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" name="adresse" />
 						</div>					
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4">Code Postal <span style="color:#FF0000;">*</span> :</label>
+						<label class="col-sm-4">Code Postal :</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" name="codepostal" />
 						</div>					
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4">Ville <span style="color:#FF0000;">*</span> :</label>
+						<label class="col-sm-4">Ville :</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" name="ville" />
 						</div>					
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4">Pays <span style="color:#FF0000;">*</span> :</label>
+						<label class="col-sm-4">Pays :</label>
 						<div class="col-sm-8">
 							<select name="pays" size="1" class="form-control">
 								<option selected="selected">France (FR)</option> 
@@ -81,9 +81,8 @@
 						</div>					
 					</div>
 					<div class="col-sm-offset-4 col-sm-8">
-						<input type="submit" value="Enregistrer" />
+						<input type="submit" value="Enregistrer"  class="btn btn-primary"/>
 				    </div>
-					
 				</form>
 				<p><span style="color:#FF0000;">*</span>Champ obligatoire</p>
 			</div>
