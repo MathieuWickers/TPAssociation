@@ -34,6 +34,7 @@ public class CommandeDAO {
 		em.getTransaction().begin();
 		Commande newCom = new Commande(commande_id,articles,adherent);
         em.persist(newCom);
+        em.flush();
         em.getTransaction().commit();
         return newCom;
 	}

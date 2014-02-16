@@ -2,6 +2,7 @@ package fr.iut.tp.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Article {
 	@Column(name = "STOCK")
 	private int stock;
 	
-	@ManyToMany 
+	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable( name="ART_COM", 
 			 joinColumns={@JoinColumn(name="ARTICLE_CODE", referencedColumnName="ARTICLE_CODE")},
 		      inverseJoinColumns={@JoinColumn(name="COMMANDE_ID", referencedColumnName="COMMANDE_ID")})
@@ -38,6 +39,7 @@ public class Article {
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
+		this.stock = stock;
 	}
 	
 	public Article(){

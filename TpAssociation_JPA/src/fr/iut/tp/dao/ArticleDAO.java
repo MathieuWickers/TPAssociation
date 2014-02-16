@@ -32,6 +32,7 @@ public class ArticleDAO {
 		em.getTransaction().begin();
 		Article newArt= new Article(code,nom,prix,stock);
         em.persist(newArt);
+        em.flush();
         em.getTransaction().commit();
         return newArt;
 	}
