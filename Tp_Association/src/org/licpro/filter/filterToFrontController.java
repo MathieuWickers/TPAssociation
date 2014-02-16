@@ -14,42 +14,38 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet Filter implementation class filterToFrontController
+ * 
+ * Redirige l'utilisateur sur le frontController lorsqu'il essaye
+ * d'accéder directement à une jsp
  */
-@WebFilter(dispatcherTypes = {DispatcherType.REQUEST }
-					, urlPatterns = { "/jsp/*" })
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/jsp/*" })
 public class filterToFrontController implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public filterToFrontController() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public filterToFrontController() {
+	}
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
 		HttpServletResponse httpsr = (HttpServletResponse) response;
-		httpsr.sendRedirect("/TPAssociation/frontController");
-		// pass the request along the filter chain
-		chain.doFilter(request, response);
+		httpsr.sendRedirect("/Tp_Association/frontController");
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

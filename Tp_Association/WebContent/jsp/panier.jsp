@@ -10,42 +10,49 @@
 	monPanier = (ArrayList<Article>) session.getAttribute("panier");
 	request.setAttribute("list", monPanier);
 %>
-
-<jsp:include page="/jsp/header.jsp" />
-<h1>
-	Panier (<%
-	if (monPanier != null) {
-%><%=monPanier.size()%>
-	<%
-		} else {
-	%>0<%
-		}
-	%>
-	articles)
-</h1>
-
-<%
-	if (monPanier != null) {
-%>
-<table border=2>
-	<c:forEach var="prod" items="${list}">
-		<tr>
-			<td>${prod.code}</td>
-			<td>${prod.nom}</td>
-			<td>${prod.prix}</td>
-		</tr>
-	</c:forEach>
-</table>
-<a href="<%=request.getContextPath() %>/logout/panier">Annuler la commande</a>
-<div id="commande">
-	<form method="post"
-		action="<%=request.getContextPath()%>/frontController/commande">
-		<input type="submit" value="Commander" />
-	</form>
-</div>
-<%
-	}
-%>
-
+	<div class="raw">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<jsp:include page="/jsp/header.jsp" />
+			<br/><br/><br/><br/>
+			<h1>
+				Panier (<%
+				if (monPanier != null) {
+			%><%=monPanier.size()%>
+				<%
+					} else {
+				%>0<%
+					}
+				%>
+				articles)
+			</h1>
+			<br/><br/>
+			
+			<%
+				if (monPanier != null) {
+			%>
+			<table border=2 class="table">
+				<c:forEach var="prod" items="${list}">
+					<tr>
+						<td>${prod.code}</td>
+						<td>${prod.nom}</td>
+						<td>${prod.prix}</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<a href="<%=request.getContextPath() %>/logout/panier">Annuler la commande</a>
+			<div id="commande">
+				<form method="post"
+					action="<%=request.getContextPath()%>/frontController/commande">
+					<input type="submit" value="Commander" />
+				</form>
+			</div>
+			<%
+				}
+			%>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+		
 </body>
 </html>

@@ -1,15 +1,21 @@
 @CHARSET "ISO-8859-1";
-body{
+/*body{
 	
 	width:600px;
 	margin-left:auto;
 	margin-right:auto;
+}*/
+#body{
+	margin-top:50px;
+	border :5px solid rgba(0, 0, 255, 0.5);
 }
 #body{
+	margin-top:50px;
 	border :5px solid rgba(0, 0, 255, 0.5);
 }
 #login form{
 	width:100%;
+	border-top:1px solid black;
 }
 #login label{
 	display:inblock;
@@ -20,17 +26,11 @@ body{
 #login input{
 	margin-bottom:5px;
 }
-#login{
-	
-	margin-left:10px;
-	
+#login{	
+	margin-left:10px;	
 }
 #login h2{
 	margin-right:10px;
-	border-bottom:1px solid black;
-}
-#header{
-	width:100%;
 }
 #blank {
 	width:50%;
@@ -48,5 +48,8 @@ body{
 
 #inscription h2{
 	margin-right:10px;
-	border-bottom:1px solid black;
+	margin-bottom:10px;
+}
+#inscription form{
+	border-top:1px solid black;
 }

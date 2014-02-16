@@ -11,30 +11,40 @@
 	articles = aDao.listAll();
 	request.setAttribute("list", articles);
 %>
-
-<jsp:include page="/jsp/header.jsp" />
-<h1>Catalogue des articles</h1>
-<table border=2>
-	<tr>
-		<th>Code</th>
-		<th>Nom</th>
-		<th>Prix</th>
-		<th>Stock</th>
-		<th></th>
-	</tr>
-
-	<c:forEach var="prod" items="${list}">
-		<tr>
-			<td>${prod.code}</td>
-			<td>${prod.nom}</td>
-			<td>${prod.stock}</td>
-			<td>${prod.prix}</td>
-			<td><a
-				href="<%=request.getContextPath()%>/frontController/article?prix=${prod.prix}&nom=${prod.nom}&code=${prod.code}">Ajouter au panier</a></td>
-		</tr>
-	</c:forEach>
-
-</table>
-
+	<div class="raw">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<jsp:include page="/jsp/header.jsp" />
+			<br/><br/><br/><br/>
+			<h1>Catalogue des articles</h1>
+			<br/><br/>
+			<table border=2 class="table">
+				<tr>
+					<th>Code</th>
+					<th>Nom</th>
+					<th>Prix</th>
+					<th>Stock</th>
+					<th></th>
+				</tr>
+			
+				<c:forEach var="prod" items="${list}">
+					<tr>
+						<td>${prod.code}</td>
+						<td>${prod.nom}</td>
+						<td>${prod.stock}</td>
+						<td>${prod.prix}</td>
+						<td><a
+							href="<%=request.getContextPath()%>/frontController/article?prix=${prod.prix}&nom=${prod.nom}&code=${prod.code}">Ajouter
+								au panier</a></td>
+					</tr>
+				</c:forEach>		
+			</table>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
 </body>
+<%if(session.getAttribute("handle")=="succes"){ %>
+	  	<script>toastr.success('Article ajout&eacute; au panier');</script>
+	  	<% session.removeAttribute("handle"); 
+	} %>
 </html>

@@ -4,31 +4,100 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css"><link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/toastr.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/booystrap-theme.css">
+<script src="<%=request.getContextPath()%>/js/jquery-1.11.0.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/toastr.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootsrap.js"></script>
 	<title>Inscription</title>
 </head>
 <body>
-	<div id="body">
+	
+	<div class="col-md-2"></div>
+	<div id="body" class="col-md-8">
 		<div id="inscription">
-			<h2>Enregistrez vous</h2>
-			<form method="post" action="<%= request.getContextPath() %>/frontController/inscription">
-				<label>Identifiant :</label> <input type="text" name="id" /><span style="color:#FF0000;">*</span><br/> 
-				<label>Mot de passe :</label> <input type="password" name="pwd" /><span style="color:#FF0000;">*</span><br/>
-				<label>Mot de passe(confirm) :</label> <input type="password" name="pwdC" /><span style="color:#FF0000;">*</span><br/>
-				<label>Nom de famille :</label> <input type="text" name="ndf" /><span style="color:#FF0000;">*</span><br/> 
-				<label>Prenom :</label> <input type="text" name="prenom" /><span style="color:#FF0000;">*</span><br/> 
-				<label>Adresse (rue) :</label> <input type="text" name="adresse" /><br/>
-				<label>Code Postal :</label> <input type="text" name="codepostal" /><br/> 
-				<label>Ville :</label> <input type="text" name="ville" /><br/> 	
-				<label>Pays</label> <select name="pays" size="1">
-					<option selected="selected">France (FR)</option> 
-					<option>Allemagne (DE)</option> 
-					<option>Espagne (ES)</option> 
-				</select><br/>
-				<input type="submit" value="Enregistrer" />
-			</form>
-			<p><span style="color:#FF0000;">*</span>Champ obligatoire</p>
+				<h2>Enregistrez vous</h2>
+				<form method="post" action="<%= request.getContextPath() %>/frontController/inscription" class="form-horizontal" role="form">
+					<div class="form-group" style="margin-top:20px;">
+						<label class="col-sm-4 ">Identifiant <span style="color:#FF0000;">*</span> :</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="id" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4">Mot de passe <span style="color:#FF0000;">*</span> :</label>
+						<div class="col-sm-8">
+							<input class="form-control"s type="password" name="pwd" />
+						</div>					
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4">Mot de passe(confirm) <span style="color:#FF0000;">*</span> :</label>
+						<div class="col-sm-8">
+							<input class="form-control"s type="password" name="pwdC" />
+						</div>					
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4">Nom de famille <span style="color:#FF0000;">*</span> :</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="ndf" />
+						</div>					
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4">Pr&eacute;nom <span style="color:#FF0000;">*</span> :</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="prenom" />
+						</div>					
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4">Adresse (rue) <span style="color:#FF0000;">*</span> :</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="adresse" />
+						</div>					
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4">Code Postal <span style="color:#FF0000;">*</span> :</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="codepostal" />
+						</div>					
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4">Ville <span style="color:#FF0000;">*</span> :</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="ville" />
+						</div>					
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4">Pays <span style="color:#FF0000;">*</span> :</label>
+						<div class="col-sm-8">
+							<select name="pays" size="1" class="form-control">
+								<option selected="selected">France (FR)</option> 
+								<option>Allemagne (DE)</option> 
+								<option>Espagne (ES)</option> 
+							</select>
+						</div>					
+					</div>
+					<div class="col-sm-offset-4 col-sm-8">
+						<input type="submit" value="Enregistrer" />
+				    </div>
+					
+				</form>
+				<p><span style="color:#FF0000;">*</span>Champ obligatoire</p>
+			</div>
 		</div>
-	</div>
+		<div class="col-md-2"></div>
 </body>
+	<%if(session.getAttribute("handle")=="log"){ %>
+	  	<script>toastr.error('Identifiant d&eacute;j&agrave; utilis&eacute;');</script>
+	  	<% session.removeAttribute("handle"); 
+	} else if (session.getAttribute("handle")=="mdp"){ %>
+	  	<script>toastr.error('Les mots de passe doivent &ecirc;tre identique');</script>
+	  	<% session.removeAttribute("handle"); 
+	} else if (session.getAttribute("handle")=="oblig"){ %>
+	  	<script>toastr.error('Veuillez remplir les champs obligatoire');</script>
+	  	<% session.removeAttribute("handle"); 
+	} %>
 </html>

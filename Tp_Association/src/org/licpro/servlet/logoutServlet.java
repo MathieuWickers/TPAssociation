@@ -29,16 +29,16 @@ public class logoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		// On vérifie l'origine de la requête
 		String nextPage = request.getPathInfo();
 		if (nextPage.contentEquals("/deconnexion")) {
-
 			request.getSession().invalidate();
 			((HttpServletResponse) response).sendRedirect(request
 					.getContextPath() + "/frontController");
 		} else if (nextPage.contentEquals("/panier")) {
 			request.getSession().removeAttribute("panier");
 			((HttpServletResponse) response).sendRedirect(request
-					.getContextPath() + "/frontController");
+					.getContextPath() + "/frontController/panier");
 		}
 	}
 

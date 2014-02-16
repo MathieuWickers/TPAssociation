@@ -1,7 +1,6 @@
 package org.licpro.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -18,9 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 public class template extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	// Constante qui contient l'ensemble des pages existantes
-	private static final List<String> existingPage = Arrays.asList("accueil",
-			"info", "login", "inscription","panier", "catalogue","historique");
+	// Déclaration des jsp
+	private static final String ERROR = "/jsp/404.jsp";
+	private static final String INFO = "/jsp/info.jsp";
+	private static final String ACCUEIL = "/jsp/accueil.jsp";
+	private static final String INSCRIPTION = "/jsp/inscription.jsp";
+	private static final String LOGIN = "/jsp/login.jsp";
+
+	// Contient le nom de certaines jsp
+	private static final List<String> existingPage = Arrays
+			.asList("accueil", "info", "login", "inscription", "panier",
+					"catalogue", "historique");
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -35,18 +42,7 @@ public class template extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		RequestDispatcher rd = null;
-		String identifiant = (String) request.getSession().getAttribute(
-				"identifiant");
-
-		if (identifiant != null) {
-			rd = userIsLogin(request);
-		} else {
-			rd = userIsLogout(request);
-		}
-
-		rd.forward(request, response);
+		process(request, response);
 	}
 
 	/**
@@ -55,41 +51,64 @@ public class template extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		//A CHANGER
-		doGet(request, response);
+		process(request, response);
 	}
 
-	public RequestDispatcher userIsLogin(HttpServletRequest request) {
+	protected void process(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher rd = null;
+		String identifiant = (String) request.getSession().getAttribute(
+				"identifiant");
+		if (identifiant != null) {
+			rd = userIsLogin(request);
+		} else {
+			rd = userIsLogout(request);
+		}
+		rd.forward(request, response);
+	}
+
+	/**
+	 * Affichage de la page web pour un utilisateur connecté
+	 * 
+	 * @param request
+	 * @return
+	 */
+	protected RequestDispatcher userIsLogin(HttpServletRequest request) {
 		RequestDispatcher rd = null;
 		String page = (String) request.getAttribute("page");
 		if (page == null || page.contentEquals("/")) {
-			rd = getServletContext().getRequestDispatcher("/jsp/accueil.jsp");
+			rd = getServletContext().getRequestDispatcher(ACCUEIL);
 		} else {
 			// Sinon on vérifie que le paramètre renvoie sur une page existante
 			if (existingPage.contains(page)) {
 				rd = getServletContext().getRequestDispatcher(
 						"/jsp/" + page + ".jsp");
 			} else {
-				rd = getServletContext().getRequestDispatcher("/jsp/404.jsp");
+				rd = getServletContext().getRequestDispatcher(ERROR);
 			}
 		}
 		return rd;
 	}
 
-	public RequestDispatcher userIsLogout(HttpServletRequest request) {
+	/**
+	 * Affichage de la page pour un utilisateur non connecté
+	 * 
+	 * @param request
+	 * @return
+	 */
+	protected RequestDispatcher userIsLogout(HttpServletRequest request) {
 		RequestDispatcher rd = null;
 		String page = (String) request.getAttribute("page");
 		if (page == null || page.contentEquals("/")) {
-			rd = getServletContext().getRequestDispatcher("/jsp/login.jsp");
+			rd = getServletContext().getRequestDispatcher(LOGIN);
 		} else if (page.contentEquals("inscription")) {
-			rd = getServletContext().getRequestDispatcher(
-					"/jsp/inscription.jsp");
+			rd = getServletContext().getRequestDispatcher(INSCRIPTION);
 		} else {
 			// Sinon on vérifie que le paramètre renvoie sur une page existante
 			if (existingPage.contains(page)) {
-				rd = getServletContext().getRequestDispatcher("/jsp/info.jsp");
+				rd = getServletContext().getRequestDispatcher(INFO);
 			} else {
-				rd = getServletContext().getRequestDispatcher("/jsp/404.jsp");
+				rd = getServletContext().getRequestDispatcher(ERROR);
 			}
 		}
 		return rd;

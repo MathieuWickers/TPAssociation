@@ -12,25 +12,32 @@
 	commandes = hc.getCommandeAdherent(login);
 	request.setAttribute("list", commandes);
 %>
-<jsp:include page="/jsp/header.jsp" />
+	<div class="raw">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+		<jsp:include page="/jsp/header.jsp" />
+		
+			<br/><br/><br/><br/>
+			<h1>Historique des commandes</h1>
+			<br/><br/>
 
-<%
-	if (!commandes.isEmpty()) {
-%>
-<c:forEach var="comm" items="${list}">
-	<h4>Commande numero ${comm.commande_Id}</h4>
-	<ul>
-		<c:forEach var="lart" items="${comm.getArticles()}">
-			<li>${lart.nom}</li>
-			<li>${lart.prix}</li>
+		<%
+			if (!commandes.isEmpty()) {
+		%>
+		<c:forEach var="comm" items="${list}">
+			<h4>Commande numero ${comm.commande_Id}</h4>
+			<ul>
+				<c:forEach var="lart" items="${comm.getArticles()}">
+					<li>${lart.nom}</li>
+					<li>${lart.prix}</li>
+				</c:forEach>
+			</ul>
 		</c:forEach>
-	</ul>
-</c:forEach>
-<%
-	}
-%>
-</body>
-</html>
-
+		<%
+			}
+		%>
+	</div>
+	<div class="col-md-2"></div>
+	</div>
 </body>
 </html>
