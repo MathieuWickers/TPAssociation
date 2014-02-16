@@ -28,6 +28,7 @@ public class TestAdherentDao {
 		adhDao = new AdherentDAO();
 
 		if (em == null) {
+
 			em = adhDao.em;
 		}
 	}
@@ -72,7 +73,7 @@ public class TestAdherentDao {
 		em.getTransaction().commit();
 	}
 
-	/*@Test
+	@Test
 	public void testCreate2() {
 		// Start a transaction
 		Adherent adhTest = new Adherent(81, "logAdh2", "pwdAdh2", "The Dude",
@@ -82,17 +83,21 @@ public class TestAdherentDao {
 				adhTest.getPwd(), adhTest.getPrenom(), adhTest.getNom(),
 				adhTest.getAddress(), adhTest.getZip(), adhTest.getCity(),
 				adhTest.getCountry());
+
 		em.getTransaction().begin();
 		Query query = em
 				.createQuery("Select adh from Adherent adh where adh.adherent_id=:adherent_id");
 		query.setParameter("adherent_id", adhTest.getAdherent_id());
 		Adherent adhRes = (Adherent) query.getSingleResult();
-		assertSame(adhTest, adhRes);
 
-		em.remove(adhTest);
+		assertSame(adhTest.getAdherent_id(), adhRes.getAdherent_id());
+		assertSame(adhTest.getLogin(), adhRes.getLogin());
+		assertSame(adhTest.getPwd(), adhRes.getPwd());
 
 		em.getTransaction().commit();
-	}*/
+
+		em.remove(adhRes);
+	}
 
 	@Test
 	public void testDelete() {
@@ -115,9 +120,9 @@ public class TestAdherentDao {
 				.createQuery("Select adh from Adherent adh where adh.adherent_id=:adherent_id");
 		query.setParameter("adherent_id", adhTest.getAdherent_id());
 		adhRes = null;
-		if ( !query.getResultList().isEmpty()) {
+		if (!query.getResultList().isEmpty()) {
 			adhRes = (Adherent) query.getSingleResult();
-		};
+		}
 		assertNull(adhRes);
 
 		em.getTransaction().commit();

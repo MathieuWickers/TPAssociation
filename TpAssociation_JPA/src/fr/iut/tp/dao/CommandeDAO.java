@@ -13,7 +13,7 @@ import fr.iut.tp.entities.Commande;
 
 public class CommandeDAO {
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa");
-	EntityManager em = factory.createEntityManager();
+	public EntityManager em = factory.createEntityManager();
 	
 	public Commande find(int id){
 		Commande com = em.find(Commande.class, id);

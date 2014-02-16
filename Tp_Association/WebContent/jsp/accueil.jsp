@@ -9,7 +9,7 @@
 			<jsp:include page="/jsp/header.jsp"/>
 			<br/><br/><br/><br/>
 			
-				<h3 class="text-muteds">Bienvenue  sur le site des adherents de l'association des poneys roses du chaos</h1>
+				<h3 class="text-muted">Bienvenue  sur le site des adherents de l'association des poneys roses du chaos</h3>
 				<ul>
 					<li><a href="<%=request.getContextPath() %>/frontController/catalogue">Consulter les articles disponibles</a></li>
 					<li><a href="<%=request.getContextPath()%>/frontController/panier">Consulter votre commande</a></li>
