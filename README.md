@@ -20,8 +20,5 @@ TP Programmation 3 avec Laurent Guérin
 
 ### A faire
 * Faire fonctionner la bdd pour que l'historique s'affiche 
-* Faire la javadoc
-* Terminer les tests unitaires
-* (optionnel) Faire du css
 
 
