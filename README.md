@@ -14,8 +14,7 @@ TP Programmation 3 avec Laurent Guérin
     * user name : root  
     * password : admin
 5. Ajouter les .jar dans le buildpath
-6. Mettre le .jar du projet JPA ainsi que tout les .jar qui se trouve dans le dossier lib du projet JPA dans le dossier WEB-INF/lib du projet web (avec un copier coller)
-7. Essayer de lancer les tests du projet JPA et de run le projet Web voir si tout fonctionne
+6. Essayer de lancer les tests du projet JPA et de run le projet Web voir si tout fonctionne
 
 
 ### A faire
