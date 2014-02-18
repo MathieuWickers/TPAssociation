@@ -36,7 +36,7 @@
 					<tr>
 						<td>${prod.code}</td>
 						<td>${prod.nom}</td>
-						<td>${prod.prix}</td>
+						<td>${prod.prix} €</td>
 					</tr>
 				</c:forEach>
 			</table>

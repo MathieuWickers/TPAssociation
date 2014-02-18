@@ -28,8 +28,7 @@
 			<h4>Commande numero ${comm.commande_Id}</h4>
 			<ul>
 				<c:forEach var="lart" items="${comm.getArticles()}">
-					<li>${lart.nom}</li>
-					<li>${lart.prix}</li>
+					<li>${lart.nom} : ${lart.prix} €</li>
 				</c:forEach>
 			</ul>
 		</c:forEach>

@@ -31,8 +31,8 @@
 					<tr>
 						<td>${prod.code}</td>
 						<td>${prod.nom}</td>
+						<td>${prod.prix} €</td>
 						<td>${prod.stock}</td>
-						<td>${prod.prix}</td>
 						<td><a
 							href="<%=request.getContextPath()%>/frontController/article?prix=${prod.prix}&nom=${prod.nom}&code=${prod.code}">Ajouter
 								au panier</a></td>

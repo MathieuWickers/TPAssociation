@@ -10,6 +10,7 @@
         <class>fr.iut.tp.entities.Commande</class>
         <class>fr.iut.tp.entities.Article</class>
         <class>fr.iut.tp.entities.Adherent</class>
+         <class>fr.iut.tp.entities.Art_com</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
