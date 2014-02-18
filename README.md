@@ -15,9 +15,3 @@ TP Programmation 3 avec Laurent Guérin
     * password : admin
 5. Ajouter les .jar dans le buildpath
 6. Essayer de lancer les tests du projet JPA et de run le projet Web voir si tout fonctionne
-
-
-### A faire
-* Faire fonctionner la bdd pour que l'historique s'affiche 
-
-
